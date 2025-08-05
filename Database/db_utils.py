@@ -11,19 +11,22 @@ def get_mongo_collection():
 def save_news_status(entry, status):
     collection = get_mongo_collection()
 
-    document = {
-        "title": entry["title"],
+    data = {
+        "title": entry.get("title", ""),
         "description": entry.get("description", ""),
         "published_date": entry.get("published_date", "Not specified"),
-        "link": entry.get("link", ""),
-        "image": entry.get("image", ""),  
+        "source": entry.get("source", "Unknown"),
         "status": status,
-        "source": entry.get("source", ""),
-        "timestamp": datetime.datetime.now()
+        "link": entry.get("link", ""),
+        "saved_at": datetime.datetime.utcnow()
     }
 
-    existing = collection.find_one({"link": document["link"]})
-    if existing:
-        collection.update_one({"link": document["link"]}, {"$set": document})
+    # Avoid duplicates by title + link
+    if not collection.find_one({"title": data["title"], "link": data["link"]}):
+        collection.insert_one(data)
     else:
-        collection.insert_one(document)
+        # Update the status if already exists
+        collection.update_one(
+            {"title": data["title"], "link": data["link"]},
+            {"$set": {"status": status, "saved_at": datetime.datetime.utcnow()}}
+        )
