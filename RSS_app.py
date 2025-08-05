@@ -32,7 +32,7 @@ def run():
     """, unsafe_allow_html=True)
 
     # Checkbox to switch layout mode
-    mobile_mode = st.checkbox("Switch to Mobile (Stacked) Layout")
+    mobile_mode = st.checkbox("Switch to Mobile Layout")
 
     col1, col2, col3 = st.columns(3)
     with col1:

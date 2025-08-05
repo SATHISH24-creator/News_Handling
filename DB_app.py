@@ -7,7 +7,7 @@ def run():
     st.title("🗂️ Filtered News")
 
     # Checkbox to switch layout mode (same as RSS_app.py)
-    mobile_mode = st.checkbox("Switch to Mobile (Stacked) Layout", key="db_mobile_mode")
+    mobile_mode = st.checkbox("Switch to Mobile Layout", key="db_mobile_mode")
 
     # MongoDB connection
     mongo_uri = st.secrets["mongodb"]["uri"]
@@ -66,13 +66,15 @@ def run():
                     short_desc = desc[:200] + "..." if len(desc) > 200 else desc
                     st.markdown(short_desc)
                 with cols[2]:
-                    st.markdown(entry.get("published_date", "N/A"))
+                    published_date = entry.get("published_date", "N/A")
+                    st.markdown(f'<div style="text-align: center;">{published_date}</div>', unsafe_allow_html=True)
                 with cols[3]:
-                    st.markdown(entry.get("source", "Unknown"))
+                    source = entry.get("source", "Unknown")
+                    st.markdown(f'<div style="text-align: center;">{source}</div>', unsafe_allow_html=True)
                 with cols[4]:
                     status = entry.get("status", "Unknown")
                     status_color = "🟢" if status == "Accepted" else "🔴" if status == "Rejected" else "⚪"
-                    st.markdown(f"{status_color} {status}")
+                    st.markdown(f'<div style="text-align: center;">{status_color} {status}</div>', unsafe_allow_html=True)
                 st.markdown("---")
 
         else:
