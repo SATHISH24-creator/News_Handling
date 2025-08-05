@@ -6,8 +6,8 @@ def run():
     st.set_page_config(page_title="🗂️ Filtered News Contents", layout="wide")
     st.title("🗂️ Filtered News")
 
-    # Layout selection toggle
-    layout_mode = st.radio("Select Layout Mode", options=["Desktop (Multi-column)", "Mobile (Stacked)"])
+    # Checkbox to switch layout mode (same as RSS_app.py)
+    mobile_mode = st.checkbox("Switch to Mobile (Stacked) Layout", key="db_mobile_mode")
 
     # MongoDB connection
     mongo_uri = st.secrets["mongodb"]["uri"]
@@ -45,7 +45,7 @@ def run():
     st.markdown("### 📋 Available News")
 
     if entries:
-        if layout_mode == "Desktop (Multi-column)":
+        if not mobile_mode:
             # Desktop layout with columns
             header_cols = st.columns([2.5, 3.5, 1.5, 1.5, 1])
             header_cols[0].markdown('<div style="text-align: center; font-weight: bold;">Title</div>', unsafe_allow_html=True)
