@@ -89,3 +89,8 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Ensure description text matches foreground color in light/dark mode */
+.toaster .toast .description {
+  color: rgb(var(--foreground)) !important;
+}

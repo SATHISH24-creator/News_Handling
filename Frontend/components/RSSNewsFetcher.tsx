@@ -371,24 +371,6 @@ function NewsEntryCard({
 
           <div className="text-sm text-gray-600 leading-relaxed">
             {displayDescription || 'No description available'}
-            {!description && (
-              <Button
-                onClick={onExtractDescription}
-                disabled={extractingDescription}
-                variant="link"
-                size="sm"
-                className="ml-2 p-0 h-auto text-indigo-600 hover:text-indigo-800"
-              >
-                {extractingDescription ? (
-                  <>
-                    <Loader2 className="w-3 h-3 mr-1 animate-spin" />
-                    Extracting...
-                  </>
-                ) : (
-                  'Extract Description'
-                )}
-              </Button>
-            )}
           </div>
 
           <div className="flex flex-wrap items-center gap-3 text-sm text-gray-500">
@@ -442,26 +424,8 @@ function NewsEntryCard({
       </div>
 
       <div className="col-span-4">
-        <div className="text-sm text-gray-600 leading-relaxed">
+        <div className="text-sm text-gray-600 leading-relaxed text-justify">
           {displayDescription || 'No description available'}
-          {!description && (
-            <Button
-              onClick={onExtractDescription}
-              disabled={extractingDescription}
-              variant="link"
-              size="sm"
-              className="ml-2 p-0 h-auto text-indigo-600 hover:text-indigo-800"
-            >
-              {extractingDescription ? (
-                <>
-                  <Loader2 className="w-3 h-3 mr-1 animate-spin" />
-                  Extracting...
-                </>
-              ) : (
-                'Extract'
-              )}
-            </Button>
-          )}
         </div>
       </div>
 
