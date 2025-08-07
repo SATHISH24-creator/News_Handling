@@ -8,9 +8,8 @@ rss_sources = {
     "6": ("NVIDIA Robotics", "https://rss.app/feeds/fgok8MDwu6ZJCOl7.xml"),
     "7": ("Anthropic", "https://rss.app/feeds/R87xeBq4tXiHLS3s.xml"),
     "8": ("Microsoft", "https://rss.app/feeds/bQF9FLInBGQsYBi5.xml"),
-    "9": ("Baidu", "https://rss.app/feeds/04waQCQOmzu7kVhX.xml"),
-    "10": ("Meta AI Blog", "https://rss.app/feeds/9QDXU7Tl5VxHCNtv.xml"),
-    "11": ("Hugging Face", "https://rss.app/feeds/IkUVIFijmf7JEj9f.xml"),
-    "12": ("Boston Dynamics", "https://rss.app/feeds/aDP50odVFp6PJLj8.xml"),
-    "13": ("News MIT", "https://news.mit.edu/topic/mitartificial-intelligence2-rss.xml")
+    "9": ("Meta AI Blog", "https://rss.app/feeds/9QDXU7Tl5VxHCNtv.xml"),
+    "10": ("Hugging Face", "https://rss.app/feeds/IkUVIFijmf7JEj9f.xml"),
+    "11": ("Boston Dynamics", "https://rss.app/feeds/aDP50odVFp6PJLj8.xml"),
+    "12": ("News MIT", "https://news.mit.edu/topic/mitartificial-intelligence2-rss.xml")
 }
