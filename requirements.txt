@@ -1,5 +1,0 @@
-feedparser
-streamlit
-pymongo
-newspaper3k
-bs4
