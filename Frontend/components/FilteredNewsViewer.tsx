@@ -93,8 +93,8 @@ export default function FilteredNewsViewer() {
     }
   }
 
-  const getCategoryColor = (category: string) => {
-    const colors = {
+const getCategoryColor = (category: string) => {
+    const colors: { [key: string]: string } = {
       'Big AI Moves': 'text-purple-600 bg-purple-50 border-purple-200',
       'Featured': 'text-orange-600 bg-orange-50 border-orange-200',
       'Technology': 'text-blue-600 bg-blue-50 border-blue-200',

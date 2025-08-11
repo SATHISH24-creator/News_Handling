@@ -35,6 +35,7 @@ export interface NewsEntry {
   source: string
   status: string
   saved_at: string
+  predicted_category?: string;
 }
 
 // API functions
