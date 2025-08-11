@@ -18,7 +18,8 @@ import {
   Globe,
   Sparkles,
   FileText,
-  TrendingUp
+  TrendingUp,
+  Tag
 } from 'lucide-react'
 import { apiClient, NewsEntry } from '@/lib/api'
 import { Button } from '@/components/ui/button'
@@ -90,6 +91,18 @@ export default function FilteredNewsViewer() {
       default:
         return <Clock className="w-4 h-4" />
     }
+  }
+
+  const getCategoryColor = (category: string) => {
+    const colors = {
+      'Big AI Moves': 'text-purple-600 bg-purple-50 border-purple-200',
+      'Featured': 'text-orange-600 bg-orange-50 border-orange-200',
+      'Technology': 'text-blue-600 bg-blue-50 border-blue-200',
+      'Research': 'text-teal-600 bg-teal-50 border-teal-200',
+      'Business': 'text-emerald-600 bg-emerald-50 border-emerald-200',
+      'Policy': 'text-indigo-600 bg-indigo-50 border-indigo-200',
+    }
+    return colors[category] || 'text-gray-600 bg-gray-50 border-gray-200'
   }
 
   const acceptedCount = entries.filter(e => e.status === 'Accepted').length
@@ -321,6 +334,12 @@ export default function FilteredNewsViewer() {
                             <Globe className="w-3 h-3 mr-1" />
                             {entry.source}
                           </Badge>
+                          {entry.predicted_category && (
+                            <Badge className={`${getCategoryColor(entry.predicted_category)} border`}>
+                              <Tag className="w-3 h-3 mr-1" />
+                              {entry.predicted_category}
+                            </Badge>
+                          )}
                           <Badge className={`${getStatusColor(entry.status)} border`}>
                             {getStatusIcon(entry.status)}
                             <span className="ml-1">{entry.status}</span>
@@ -353,21 +372,22 @@ export default function FilteredNewsViewer() {
                 // Desktop layout
                 <div>
                   {/* Header */}
-                  <div className="grid grid-cols-12 gap-6 p-6 border-b font-semibold text-gray-700 bg-gray-50">
+                  <div className="grid grid-cols-12 gap-4 p-6 border-b font-semibold text-gray-700 bg-gray-50">
                     <div className="col-span-3 flex items-center space-x-2">
                       <FileText className="w-4 h-4" />
                       <span>Title</span>
                     </div>
-                    <div className="col-span-4">Description</div>
+                    <div className="col-span-3">Description</div>
                     <div className="col-span-2 text-center">Published Date</div>
-                    <div className="col-span-2 text-center">Source</div>
+                    <div className="col-span-1 text-center">Source</div>
+                    <div className="col-span-2 text-center">Category</div>
                     <div className="col-span-1 text-center">Status</div>
                   </div>
                   
                   {/* Entries */}
                   <div className="space-y-0">
                     {entries.map((entry) => (
-                      <div key={entry._id} className="grid grid-cols-12 gap-6 items-center p-6 border-b last:border-b-0 hover:bg-gray-50 transition-all duration-200 group">
+                      <div key={entry._id} className="grid grid-cols-12 gap-4 items-center p-6 border-b last:border-b-0 hover:bg-gray-50 transition-all duration-200 group">
                         <div className="col-span-3">
                           <a
                             href={entry.link}
@@ -379,7 +399,7 @@ export default function FilteredNewsViewer() {
                           </a>
                         </div>
                         
-                        <div className="col-span-4">
+                        <div className="col-span-3">
                           <div className="text-sm text-gray-600 leading-relaxed">
                             {entry.description || 'No description available'}
                           </div>
@@ -392,11 +412,22 @@ export default function FilteredNewsViewer() {
                           </Badge>
                         </div>
                         
-                        <div className="col-span-2 text-center">
+                        <div className="col-span-1 text-center">
                           <Badge variant="outline" className="border-gray-300">
                             <Globe className="w-3 h-3 mr-1" />
                             {entry.source}
                           </Badge>
+                        </div>
+                        
+                        <div className="col-span-2 text-center">
+                          {entry.predicted_category ? (
+                            <Badge className={`${getCategoryColor(entry.predicted_category)} border text-xs`}>
+                              <Tag className="w-3 h-3 mr-1" />
+                              {entry.predicted_category}
+                            </Badge>
+                          ) : (
+                            <span className="text-xs text-gray-400">No category</span>
+                          )}
                         </div>
                         
                         <div className="col-span-1 text-center">
